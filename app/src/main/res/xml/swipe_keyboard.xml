@@ -2,13 +2,16 @@
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:horizontalGap="5dp"
     android:verticalGap="5dp"
-    android:keyHeight="60pd"
-    android:keyWidth="20%dp">
+    android:keyHeight="60dp"
+    android:keyWidth="20%p">
 
     <Row>
-        <Key android:keyLabel="a" android:keyEdgeFlags="left"/>
-        <Key android:keyLabel="b" android:keyEdgeFlags="left"/>
-        <Key android:keyLabel="c" android:keyEdgeFlags="left"/>
-        <Key android:keyLabel="d" android:keyEdgeFlags="left"/>
+        <Key android:keyLabel="abcd" android:keyEdgeFlags="left"/>
+        <Key android:keyLabel="efgh" />
+        <Key android:keyLabel="ijkl" />
+        <Key android:keyLabel="mnop" />
+        <Key android:keyLabel="qrst" />
+        <Key android:keyLabel="uvwx" />
+        <Key android:keyLabel="yz,." android:keyEdgeFlags="right"/>
     </Row>
 </Keyboard>

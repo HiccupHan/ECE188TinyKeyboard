@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- key_popup_layout.xml -->
+<!--<TextView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:id="@+id/popupTextView"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:padding="8dp"-->
+<!--    android:textSize="16sp"-->
+<!--    android:textColor="#000000"-->
+<!--    android:background="#FFFFFF"-->
+<!--    android:elevation="4dp"-->
+<!--    android:gravity="center"-->
+<!--    android:text="A\nB\nC\nD" /> &lt;!&ndash; Example letters for selection &ndash;&gt;-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:elevation="4dp">
+
+    <!-- Letter A -->
+    <TextView
+        android:id="@+id/lettera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:onClick="onLetterClicked" />
+
+    <!-- Letter B -->
+    <TextView
+        android:id="@+id/letterb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:onClick="onLetterClicked" />
+
+    <!-- Letter C -->
+    <TextView
+        android:id="@+id/letterc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:onClick="onLetterClicked" />
+
+    <!-- Letter D -->
+    <TextView
+        android:id="@+id/letterd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:onClick="onLetterClicked" />
+
+    <!-- Add more TextViews for additional letters as needed -->
+
+</LinearLayout>
