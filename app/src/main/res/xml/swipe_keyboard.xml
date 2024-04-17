@@ -6,12 +6,27 @@
     android:keyWidth="20%p">
 
     <Row>
-        <Key android:keyLabel="abcd" android:keyEdgeFlags="left"/>
-        <Key android:keyLabel="efgh" />
-        <Key android:keyLabel="ijkl" />
-        <Key android:keyLabel="mnop" />
-        <Key android:keyLabel="qrst" />
-        <Key android:keyLabel="uvwx" />
-        <Key android:keyLabel="yz,." android:keyEdgeFlags="right"/>
+        <Key android:keyLabel="abcd"
+             android:popupCharacters="abcd"
+             android:popupKeyboard="@xml/popup" android:keyEdgeFlags="left"/>
+        <Key android:keyLabel="efgh"
+            android:popupCharacters="efgh"
+            android:popupKeyboard="@xml/popup" />
+        <Key android:keyLabel="ijkl"
+            android:popupCharacters="ijkl"
+            android:popupKeyboard="@xml/popup" />
+        <Key android:keyLabel="mnop"
+            android:popupCharacters="mnop"
+            android:popupKeyboard="@xml/popup" />
+        <Key android:keyLabel="qrst"
+            android:popupCharacters="qrst"
+            android:popupKeyboard="@xml/popup" />
+        <Key android:keyLabel="uvwx"
+            android:popupCharacters="uvwx"
+            android:popupKeyboard="@xml/popup" />
+        <Key android:keyLabel="yz,."
+            android:popupCharacters="yz,."
+            android:popupKeyboard="@xml/popup"
+            android:keyEdgeFlags="right"/>
     </Row>
 </Keyboard>

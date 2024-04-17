@@ -3,8 +3,10 @@ package com.example.ece188tinykeyboard;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputConnection;
 
 
@@ -24,7 +26,7 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
     private KeyboardView keyboardView;
     private Keyboard keyboard;
     private PopupWindow popupWindow;
-    private TextView[] letterArr = new TextView[4];
+    private TextView popupTextView;
 
     @Override
     public View onCreateInputView() {
@@ -39,7 +41,8 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
 
     @Override
     public void onPress(int primaryCode) {
-
+//        List<String> lettersToShow = getLettersForPopup(primaryCode);
+//        showKeyPopup(lettersToShow);
     }
 
     @Override
@@ -52,70 +55,71 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
     }
 
 
-    private List<String> getLettersForPopup(int keyCode) {
-        List<String> lettersToShow = new ArrayList<>();
-        switch (keyCode) {
-            case 97:
-                lettersToShow = Arrays.asList("A", "Ä", "Æ", "À");
-                break;
-            case 98:
-                lettersToShow = Arrays.asList("B", "ß", "Þ", "þ");
-                break;
-            // Add more cases for other keys as needed
-            default:
-                break;
-        }
-        return lettersToShow;
-    }
+//    private List<String> getLettersForPopup(int keyCode) {
+//        List<String> lettersToShow = new ArrayList<>();
+//        switch (keyCode) {
+//            case 97:
+//                lettersToShow = Arrays.asList("A", "B", "C", "D");
+//                break;
+//            case 98:
+//                lettersToShow = Arrays.asList("B", "ß", "Þ", "þ");
+//                break;
+//            // Add more cases for other keys as needed
+//            default:
+//                break;
+//        }
+//        return lettersToShow;
+//    }
 
-    private void showKeyPopup(List<String> lettersToShow) {
-        // Inflate the key_popup_layout.xml to create the popup view
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.key_popup_layout, null);
+//    private void showKeyPopup(List<String> lettersToShow) {
+//        // Inflate the key_popup_layout.xml to create the popup view
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+//        View popupView = inflater.inflate(R.layout.key_popup_layout, null);
+//
+//        // Initialize the PopupWindow
+//        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+//
+//        // Find the TextView in the popup layout
+//        popupTextView = popupView.findViewById(R.id.popupTextView);
+//
+//        // Build the string with letters for display in the popup
+//        StringBuilder popupText = new StringBuilder();
+//        for (String letter : lettersToShow) {
+//            popupText.append(letter).append("\n");
+//        }
+//        popupTextView.setText(popupText.toString().trim()); // Set text with letters for selection
+//
+//        // Show the popup window above the keyboard view
+//
+//
+//        // Handle letter selection (optional)
+//        if (popupWindow != null && popupTextView != null && keyboardView != null) {
+//            // Use popupWindow, popupTextView, and keyboardView safely
+//            int[] location = new int[2];
+//            keyboardView.getLocationOnScreen(location);
+//            int yOffset = location[1] - popupView.getHeight(); // Adjust the y-offset for the popup position
+//            popupWindow.showAtLocation(keyboardView, Gravity.NO_GRAVITY, 0, yOffset);
+//            popupTextView.setOnClickListener(view -> {
+//                String selectedLetter = ((TextView) view).getText().toString();
+//                Toast.makeText(this, "Selected: " + selectedLetter, Toast.LENGTH_SHORT).show();
+//                // Perform any desired action with the selected letter (e.g., commit to input connection)
+//                InputConnection inputConnection = getCurrentInputConnection();
+//                if (inputConnection != null) {
+//                    inputConnection.commitText(selectedLetter, 1);
+//                }
+//                // Dismiss the popup window after selection
+//                popupWindow.dismiss();
+//            });
+//        }
 
-        // Initialize the PopupWindow
-        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-
-        // Find the TextView in the popup layout
-        letterArr[0] = popupView.findViewById(R.id.lettera);
-        letterArr[1] = popupView.findViewById(R.id.letterb);
-        letterArr[2] = popupView.findViewById(R.id.letterc);
-        letterArr[3] = popupView.findViewById(R.id.letterd);
-
-        // Build the string with letters for display in the popup
-        int i = 0;
-        for (String letter : lettersToShow) {
-            letterArr[i].setText(letter.trim());;
-            i++;
-        }
-
-        // Show the popup window above the keyboard view
-        int[] location = new int[2];
-        keyboardView.getLocationOnScreen(location);
-        int yOffset = location[1] - popupView.getHeight(); // Adjust the y-offset for the popup position
-        popupWindow.showAtLocation(keyboardView, Gravity.NO_GRAVITY, 0, yOffset);
-
-        // Handle letter selection (optional)
-        for(TextView letter : letterArr){
-            letter.setOnClickListener(view -> {
-                String selectedLetter = ((TextView) view).getText().toString();
-                Toast.makeText(this, "Selected: " + selectedLetter, Toast.LENGTH_SHORT).show();
-                // Perform any desired action with the selected letter (e.g., commit to input connection)
-                InputConnection inputConnection = getCurrentInputConnection();
-                if (inputConnection != null) {
-                    inputConnection.commitText(selectedLetter, 1);
-                }
-                // Dismiss the popup window after selection
-                popupWindow.dismiss();
-            });
-        }
-
-    }
-
+//    }
     @Override
     public void onKey(int primaryCode, int[] keyCodes) {
-        List<String> lettersToShow = getLettersForPopup(primaryCode);
-        showKeyPopup(lettersToShow);
+        InputConnection inputConnection = getCurrentInputConnection();
+        if(inputConnection == null){
+            return;
+        }
+        inputConnection.commitText(String.valueOf((char) primaryCode), 1);
     }
 
     @Override
@@ -125,12 +129,27 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
 
     @Override
     public void swipeLeft() {
-
+        InputConnection inputConnection = getCurrentInputConnection();
+        if(inputConnection == null){
+            return;
+        }
+        CharSequence selectedText = inputConnection.getSelectedText(0);
+        if (TextUtils.isEmpty(selectedText)) {
+            // no selection, so delete previous character
+            inputConnection.deleteSurroundingText(1, 0);
+        } else {
+            // delete the selection
+            inputConnection.commitText("", 1);
+        }
     }
 
     @Override
     public void swipeRight() {
-
+        InputConnection inputConnection = getCurrentInputConnection();
+        if(inputConnection == null){
+            return;
+        }
+        inputConnection.commitText(" ", 1);
     }
 
     @Override
