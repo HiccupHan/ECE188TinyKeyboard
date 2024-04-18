@@ -5,30 +5,29 @@
     android:keyHeight="60dp"
     android:keyWidth="40dp">
     <Row>
-        <Key android:keyLabel="abcd"
-             android:popupCharacters="abcd"
-             android:popupKeyboard="@xml/popup" android:keyEdgeFlags="left"/>
-        <Key android:keyLabel="efgh"
-            android:popupCharacters="efgh"
+        <Key android:keyLabel="ABCD"
+            android:popupCharacters="ABCD"
+            android:popupKeyboard="@xml/popup" android:keyEdgeFlags="left"/>
+        <Key android:keyLabel="EFGH"
+            android:popupCharacters="EFGH"
             android:popupKeyboard="@xml/popup" />
-        <Key android:keyLabel="ijkl"
-            android:popupCharacters="ijkl"
+        <Key android:keyLabel="IJKL"
+            android:popupCharacters="IJKL"
             android:popupKeyboard="@xml/popup" />
-        <Key android:keyLabel="mnop"
-            android:popupCharacters="mnop"
+        <Key android:keyLabel="MNOP"
+            android:popupCharacters="MNOP"
             android:popupKeyboard="@xml/popup" />
-        <Key android:keyLabel="qrst"
-            android:popupCharacters="qrst"
+        <Key android:keyLabel="QRST"
+            android:popupCharacters="QRST"
             android:popupKeyboard="@xml/popup" />
-        <Key android:keyLabel="uvwx"
-            android:popupCharacters="uvwx"
+        <Key android:keyLabel="UVWX"
+            android:popupCharacters="UVWX"
             android:popupKeyboard="@xml/popup" />
-        <Key android:keyLabel="yz,."
-            android:popupCharacters="yz,."
+        <Key android:keyLabel="YZ,."
+            android:popupCharacters="YZ,."
             android:popupKeyboard="@xml/popup" />
         <Key android:keyLabel="^"
             android:popupKeyboard="@xml/popup"
             android:keyEdgeFlags="right"/>
     </Row>
-
 </Keyboard>

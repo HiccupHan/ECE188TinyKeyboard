@@ -4,6 +4,7 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,8 +26,10 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
 
     private KeyboardView keyboardView;
     private Keyboard keyboard;
-    private PopupWindow popupWindow;
-    private TextView popupTextView;
+
+    private Keyboard uppercaseKeyboard;
+
+    private boolean upper = false;
 
     @Override
     public View onCreateInputView() {
@@ -36,6 +39,9 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
         keyboardView.setKeyboard(keyboard);
         keyboardView.setPreviewEnabled(false);
         keyboardView.setOnKeyboardActionListener(this);
+
+        uppercaseKeyboard = new Keyboard(this, R.xml.uppercase_keyboard);
+
         return keyboardView;
     }
 
@@ -115,6 +121,15 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
 //    }
     @Override
     public void onKey(int primaryCode, int[] keyCodes) {
+        if(String.valueOf((char) primaryCode).equals("^")){
+            if(upper)
+                keyboardView.setKeyboard(keyboard);
+            else
+                keyboardView.setKeyboard(uppercaseKeyboard);
+            upper = !upper;
+            return;
+        }
+
         InputConnection inputConnection = getCurrentInputConnection();
         if(inputConnection == null){
             return;
@@ -159,6 +174,5 @@ public class TinyKeyboard extends InputMethodService implements KeyboardView.OnK
 
     @Override
     public void swipeUp() {
-
     }
 }
